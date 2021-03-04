@@ -15,7 +15,7 @@ interface GameTag {
   games_count: number;
 }
 
-export interface Game {
+export interface GameModel {
   added: number;
   background_image: string;
   clip: null;

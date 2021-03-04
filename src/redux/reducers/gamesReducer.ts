@@ -1,25 +1,25 @@
-import { Game } from "../../interfaces/GameModel";
+import { GameModel } from "../../interfaces/GameModel";
 interface Action {
   type: string;
   payload: {
-    popular: Game[];
-    new: Game[];
-    upcoming: Game[];
+    popular: GameModel[];
+    new: GameModel[];
+    upcoming: GameModel[];
   };
 }
 
-class State {
-  newGames: Game[] | [];
-  upcomingGames: Game[] | [];
-  popularGames: Game[] | [];
+export class State {
+  newGames: GameModel[] | null;
+  upcomingGames: GameModel[] | null;
+  popularGames: GameModel[] | null;
   constructor() {
-    this.newGames = [];
-    this.upcomingGames = [];
-    this.popularGames = [];
+    this.newGames = null;
+    this.upcomingGames = null;
+    this.popularGames = null;
   }
 }
 
-const gamesReducer = (state = new State(), { type, payload }: Action) => {
+export const gamesReducer = (state = new State(), { type, payload }: Action) => {
   switch (type) {
     case "FETCH_GAMES":
       return {
@@ -34,5 +34,3 @@ const gamesReducer = (state = new State(), { type, payload }: Action) => {
     }
   }
 };
-
-export default gamesReducer;
