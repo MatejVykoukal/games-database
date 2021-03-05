@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   h3{
     font-size: 1.3rem;
     color: #333;
-    padding: 1.5rem;
+    padding: 1.5rem 0;
   }p{
     font-size:1.2rem;
     line-height: 200%;

@@ -1,4 +1,5 @@
 import { GameModel } from "../../interfaces/GameModel";
+
 interface Action {
   type: string;
   payload: {
@@ -19,7 +20,7 @@ export class State {
   }
 }
 
-export const gamesReducer = (state = new State(), { type, payload }: Action) => {
+export const gamesReducer = (state = new State(), { type, payload }: Action): State => {
   switch (type) {
     case "FETCH_GAMES":
       return {

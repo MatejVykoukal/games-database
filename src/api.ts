@@ -5,9 +5,9 @@ const base_url = `https://api.rawg.io/api/`;
 
 const popular_games = `games?${apiKey}&dates=${prevDate},${currentDate}&ordering=-rating&page_size=10`;
 const upcoming_games = `games?${apiKey}&dates=${currentDate},${nextDate}&ordering=released&page_size=10`;
-const newGames = `games?${apiKey}&dates=${prevDate},${currentDate}&ordering=-released&page_size=10`;
+const newGames = `games?${apiKey}&dates=${prevDate},${currentDate}&ordering=-added&page_size=10`;
 
-export const gamesURL = (type: "popular" | "upcoming" | "new") => {
+export const gamesURL = (type: "popular" | "upcoming" | "new" | "details" | "screenshots", id?: number) => {
   switch (type) {
     case "popular":
       return `${base_url}${popular_games}`;
@@ -15,5 +15,9 @@ export const gamesURL = (type: "popular" | "upcoming" | "new") => {
       return `${base_url}${upcoming_games}`;
     case "new":
       return `${base_url}${newGames}`;
+    case "details":
+      return `${base_url}games/${id}`;
+    case "screenshots":
+      return `${base_url}games/${id}/screenshots`;
   }
 };

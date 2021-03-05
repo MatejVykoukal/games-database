@@ -1,15 +1,23 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { getDetails } from "../redux/actions/getDetailsAction";
 interface Props {
   name: string;
   released: string;
   image: string;
+  id: number;
 }
 
-const Game: React.FC<Props> = ({ name, released, image }) => {
+const Game: React.FC<Props> = ({ name, released, image, id }) => {
+  const dispatch = useDispatch();
+  const handleFetchDetails = () => {
+    dispatch(getDetails(id));
+  };
+
   return (
-    <StyledGame>
+    <StyledGame onClick={handleFetchDetails}>
       <h3>{name}</h3>
       <p>{released}</p>
       <img src={image} alt={name} />
