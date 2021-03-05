@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { GameModel } from "../interfaces/GameModel";
 import Game from "../components/Game";
-import { currentDate, prevDate } from "../date";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getGames } from "../redux/actions/getGamesAction";
 import GameDetails from "../components/GameDetails";
 import { GenericState } from "../redux/reducers";
+import { useLocation } from "react-router";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,11 +21,14 @@ const Home = () => {
     games: { popularGames, upcomingGames, newGames },
     details: { details },
   } = useSelector((state: GenericState) => state);
-  console.log(prevDate, currentDate);
+
+  const { pathname: path } = useLocation();
+
+  const pathId = path.split("/")[2];
 
   return (
     <GamesList>
-      {details && <GameDetails />}
+      {pathId && <GameDetails />}
       <h2>Popular Games</h2>
       <Games>
         {popularGames &&

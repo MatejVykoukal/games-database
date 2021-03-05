@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { getDetails } from "../redux/actions/getDetailsAction";
+
 interface Props {
   name: string;
   released: string;
@@ -18,14 +20,17 @@ const Game: React.FC<Props> = ({ name, released, image, id }) => {
 
   return (
     <StyledGame onClick={handleFetchDetails}>
-      <h3>{name}</h3>
-      <p>{released}</p>
-      <img src={image} alt={name} />
+      <Link to={`/game/${id}`}>
+        <h3>{name}</h3>
+        <p>{released}</p>
+        <img src={image} alt={name} />
+      </Link>
     </StyledGame>
   );
 };
 
 const StyledGame = styled(motion.div)`
+  cursor: pointer;
   min-height: 30vh;
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
   border-radius: 2rem 2rem 0 0;
