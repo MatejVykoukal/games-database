@@ -14,6 +14,7 @@ interface Props {
 
 const Game: React.FC<Props> = ({ name, released, image, id }) => {
   const dispatch = useDispatch();
+
   const handleFetchDetails = () => {
     dispatch(getDetails(id));
   };

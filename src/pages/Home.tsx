@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <GamesList>
-      {pathId && <GameDetails />}
+      {pathId && details && <GameDetails />}
       <h2>Popular Games</h2>
       <Games>
         {popularGames &&

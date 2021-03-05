@@ -3,6 +3,7 @@ import { Dispatch } from "redux";
 import { gamesURL } from "../../api";
 
 export const getDetails = (id: number) => async (dispatch: Dispatch) => {
+  dispatch({ type: "TURN_ON_LOADING" });
   const details = await axios.get(gamesURL("details", id));
   const screenShots = await axios.get(gamesURL("screenshots", id));
   dispatch({
