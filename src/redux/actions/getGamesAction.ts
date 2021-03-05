@@ -2,9 +2,9 @@ import axios from "axios";
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { gamesURL } from "../../api";
-import { State } from "../reducers/gamesReducer";
+import { GamesState } from "../reducers/gamesReducer";
 
-export const getGames: ThunkAction<void, State, unknown, Action<string>> = async (dispatch) => {
+export const getGames: ThunkAction<void, GamesState, unknown, Action<string>> = async (dispatch) => {
   const popularGamesData = await axios.get(gamesURL("popular"));
   const newGamesData = await axios.get(gamesURL("new"));
   const upcoming = await axios.get(gamesURL("upcoming"));

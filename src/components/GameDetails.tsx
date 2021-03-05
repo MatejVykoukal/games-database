@@ -1,26 +1,27 @@
-import { motion } from "framer-motion";
 import React from "react";
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { GenericState } from "../redux/reducers";
 
 const GameDetails = () => {
-  const { details, screenShots } = useSelector((state: any) => state.details);
+  const { details, screenShots } = useSelector((state: GenericState) => state.details);
   return (
     <Mask>
       <Card>
-        <h2>{details.name}</h2>
-        <p>Rating: {details.rating}</p>
+        <h2>{details!.name}</h2>
+        <p>Rating: {details!.rating}</p>
         <div className="info">
           <h3>Platforms</h3>
           <div className="platforms">
-            {details.platforms.map(({ platform }: any) => (
+            {details!.platforms.map(({ platform }) => (
               <h3 key={platform.id}>{platform.name}</h3>
             ))}
           </div>
-          <img src={details.background_image} alt={details.name} />
-          <p>{details.description_raw}</p>
+          <img src={details!.background_image} alt={details!.name} />
+          <p>{details!.description_raw}</p>
           <div className="gallery">
-            {screenShots.map((screenShot: any) => (
+            {screenShots!.map((screenShot) => (
               <img key={screenShot.id} src={screenShot.image} alt={screenShot.image} />
             ))}
           </div>

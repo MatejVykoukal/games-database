@@ -1,5 +1,10 @@
 import { combineReducers } from "redux";
-import { gamesReducer } from "./gamesReducer";
-import { detailsReducer } from "./detailsReducer";
+import { detailsReducer, GameDetailsState } from "./detailsReducer";
+import { gamesReducer, GamesState } from "./gamesReducer";
 
-export default combineReducers({ games: gamesReducer, details: detailsReducer });
+export interface GenericState {
+  games: GamesState;
+  details: GameDetailsState;
+}
+
+export const rootReducer = combineReducers({ games: gamesReducer, details: detailsReducer });

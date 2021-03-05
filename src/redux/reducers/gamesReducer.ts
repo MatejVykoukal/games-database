@@ -9,7 +9,7 @@ interface Action {
   };
 }
 
-export class State {
+export class GamesState {
   newGames: GameModel[] | null;
   upcomingGames: GameModel[] | null;
   popularGames: GameModel[] | null;
@@ -20,7 +20,7 @@ export class State {
   }
 }
 
-export const gamesReducer = (state = new State(), { type, payload }: Action): State => {
+export const gamesReducer = (state = new GamesState(), { type, payload }: Action): GamesState => {
   switch (type) {
     case "FETCH_GAMES":
       return {

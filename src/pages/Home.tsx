@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { State } from "../redux/reducers/gamesReducer";
 import { GameModel } from "../interfaces/GameModel";
 import Game from "../components/Game";
 import { currentDate, prevDate } from "../date";
@@ -9,6 +8,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getGames } from "../redux/actions/getGamesAction";
 import GameDetails from "../components/GameDetails";
+import { GenericState } from "../redux/reducers";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -17,12 +17,15 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { popularGames, upcomingGames, newGames } = useSelector((state: { games: State }) => state.games);
+  const {
+    games: { popularGames, upcomingGames, newGames },
+    details: { details },
+  } = useSelector((state: GenericState) => state);
   console.log(prevDate, currentDate);
 
   return (
     <GamesList>
-      <GameDetails />
+      {details && <GameDetails />}
       <h2>Popular Games</h2>
       <Games>
         {popularGames &&
