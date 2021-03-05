@@ -23,9 +23,12 @@ const GlobalStyle = createGlobalStyle`
     text-decoration:none;
     color: #333;
   }
+  img{
+    display: block;
+  }
 }html{
     &::-webkit-scrollbar{
-      width: .7rem;
+      width: .5rem;
     }
     &::-webkit-scrollbar-thumb{
       background-color: #696969;

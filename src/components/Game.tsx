@@ -15,8 +15,9 @@ interface Props {
 const Game: React.FC<Props> = ({ name, released, image, id }) => {
   const dispatch = useDispatch();
 
-  const handleFetchDetails = () => {
+  const handleFetchDetails = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch(getDetails(id));
+    document.body.style.overflowY = "hidden";
   };
 
   return (
