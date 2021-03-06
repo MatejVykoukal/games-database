@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { getDetails } from "../redux/actions/getDetailsAction";
+import { resizeImage } from "../resizeImage";
 
 interface Props {
   name: string;
@@ -25,7 +26,7 @@ const Game: React.FC<Props> = ({ name, released, image, id }) => {
       <Link to={`/game/${id}`}>
         <h3>{name}</h3>
         <p>{released}</p>
-        <img src={image} alt={name} />
+        <img src={resizeImage(image, "640")} alt={name} />
       </Link>
     </StyledGame>
   );

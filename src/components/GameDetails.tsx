@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { GenericState } from "../redux/reducers";
 import { useHistory } from "react-router-dom";
+import { resizeImage } from "../resizeImage";
 
 const GameDetails = () => {
   const { details, screenShots, isLoading } = useSelector((state: GenericState) => state.details);
@@ -34,11 +35,11 @@ const GameDetails = () => {
                   <h3 key={platform.id}>{platform.name}</h3>
                 ))}
               </div>
-              <img src={details!.background_image} alt={details!.name} />
+              <img src={resizeImage(details!.background_image, "1280")} alt={details!.name} />
               <p>{details!.description_raw}</p>
               <div className="gallery">
                 {screenShots!.map((screenShot) => (
-                  <img key={screenShot.id} src={screenShot.image} alt={screenShot.image} />
+                  <img key={screenShot.id} src={resizeImage(screenShot.image, "1280")} alt={screenShot.image} />
                 ))}
               </div>
             </div>
