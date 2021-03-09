@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { GameModel } from "../interfaces/GameModel";
@@ -9,13 +9,10 @@ import { getGames } from "../redux/actions/getGamesAction";
 import GameDetails from "../components/GameDetails";
 import { GenericState } from "../redux/reducers";
 import { useLocation } from "react-router";
+import { getDetails } from "../redux/actions/getDetailsAction";
 
 const Home = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getGames);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const {
     games: { popularGames, upcomingGames, newGames },
@@ -26,9 +23,21 @@ const Home = () => {
 
   const pathId = path.split("/")[2];
 
+  useEffect(() => {
+    dispatch(getGames);
+    if (pathId) {
+      dispatch(getDetails(+pathId));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
+
+  useEffect(() => {
+    pathId ? (document.body.style.overflowY = "hidden") : (document.body.style.overflowY = "auto");
+  }, [pathId]);
+
   return (
     <GamesList>
-      {pathId && details && <GameDetails />}
+      <AnimatePresence>{pathId && details && <GameDetails />}</AnimatePresence>
       <h2>Popular Games</h2>
       <Games>
         {popularGames &&
@@ -55,7 +64,8 @@ const Home = () => {
 };
 
 const GamesList = styled(motion.div)`
-  padding: 0 5rem;
+  padding: 1rem 5rem;
+  background-color: #151515;
   & > h2 {
     padding: 5rem 0;
   }

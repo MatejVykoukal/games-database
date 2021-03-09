@@ -8,20 +8,19 @@ const GlobalStyle = createGlobalStyle`
   font-family: 'Montserrat', sans-serif;
   h2{
     font-size: 3rem;
-    color: #333;
+    color: #eee;
   }
   h3{
     font-size: 1.3rem;
-    color: #333;
-    padding: 1.5rem 0;
+    color: #eee;
   }p{
     font-size:1.2rem;
     line-height: 200%;
-    color: #696969;
+    color: #9a9a9a;
   }
   a{
     text-decoration:none;
-    color: #333;
+    color: #eee;
   }
   img{
     display: block;
@@ -31,7 +30,10 @@ const GlobalStyle = createGlobalStyle`
       width: .5rem;
     }
     &::-webkit-scrollbar-thumb{
-      background-color: #696969;
+      background-color: #c24141;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: #747474;
     }
   }
 `;
